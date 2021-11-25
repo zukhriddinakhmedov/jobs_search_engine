@@ -1,7 +1,9 @@
+import Button from "@restart/ui/esm/Button"
 import  {Component} from "react"
 import { Container, Form, Row, Col } from "react-bootstrap"
 import uniqid from "uniqid"
 import Job from "./Job"
+
 
 class MainSearch extends Component {
 
@@ -25,21 +27,23 @@ class MainSearch extends Component {
             return
         }
         const {data} = await response.json()
-
+        
+        console.log({data})
         this.setState({ jobs: data })
     }
     render() {
         return (
-     <Container>
+     <Container className="mx-auto my-2">
          <Row>
         <Col xs={10} className='mx-auto'>
         <Form onSubmit={this.handleSubmit}>
-            <Form.Control type="search" value={this.state.query} onChange={this.handleChange} />
+            <Form.Control type="search" value={this.state.query} onChange={this.handleChange} placeholder="search..."/>
         </Form>
         </Col>
         <Col xs={ 10} className='mx-auto'>
         {
             this.state.jobs.map(jobData => <Job key={uniqid()} data={jobData} />)
+            
         }
         </Col>
          </Row>
