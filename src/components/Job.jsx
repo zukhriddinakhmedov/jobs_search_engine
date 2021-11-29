@@ -1,8 +1,8 @@
 import React from 'react'
 import {Row, Col, Button, Container, Card } from "react-bootstrap"
 import { Link } from "react-router-dom"
-import {MdFavorite} from "react-icons/md"
-import { addToFavouritesAction } from '../actions'
+import {MdFavorite, MdOutlineFavoriteBorder} from "react-icons/md"
+import { addToFavouritesAction, removeFromFavouritesAction } from '../actions'
 import {connect} from 'react-redux'
 
 const mapStateToProps = (state) => state
@@ -10,24 +10,24 @@ const mapStateToProps = (state) => state
 const mapDispatchToProps = (dispatch) => ({
     addToFavourites: function (jobToAdd){
         dispatch(addToFavouritesAction(jobToAdd))
+    },
+    removeFromFavourites: function(indexToRemove) {
+        dispatch(removeFromFavouritesAction(indexToRemove))
     }
-
 })
 
- function Job({data, content, addToFavourites, removeFromFavourites}) {
+ function Job({data, favourites, addToFavourites, removeFromFavourites}) {
     
-    const ifFavourite = content.includes(data.company_name)
-    const toggleFavourite = () => (
-        ifFavourite
-        ? addToFavourites(data.company_name)
-        : removeFromFavourites(data.company_name)
-    )
-
-
-
-    return (
+   //const ifFavourite = favourites.content.includes(data.company_name)
+    console.log("This is favourites",  favourites)
+    // const toggleFavourite = () => {
+    // //     ifFavourite
+    // //     ? removeFromFavourites(data.company_name)
+    // //     : addToFavourites(data.company_name)
+    // // }
+     return (
         <Container>
-            <Row>
+            {/* <Row>
                 <Col style={{marginTop: "3px"}}>
                 <Card border="info" >
             <Col xs={3}><b>Company: {''}</b>
@@ -37,19 +37,29 @@ const mapDispatchToProps = (dispatch) => ({
             <a href={data.url} target='_blank' rel="noreferrer">
                  {data.title}
                 </a>
-                <Button style={{ display: 'flex', justifyContent: 'flex-end'}}
-                onClick={() => data.addToFavourites(this.content)} >
-                       {
-                           ifFavourite 
-                           ? <MdFavorite onClick={toggleFavourite}/>
-                           : <MdFavorite onClick={toggleFavourite}/>
-                       }
-                </Button>
+                 <Col xs={3} className="d-flex">
+                {
+                  ifFavourite ? (
+                    <MdFavorite
+                    color="red"
+                    size={22}
+                    onClick={toggleFavourite}
+                    />
+                    
+                  ) : (
+                    <MdOutlineFavoriteBorder 
+                    color="red"
+                    size={22}
+                    onClick={toggleFavourite}
+                    />   
+                  )
+                }
+                    </Col>
             </Col>
             
             </Card>
             </Col>
-            </Row>
+            </Row> */}
             </Container>
     )
 }
