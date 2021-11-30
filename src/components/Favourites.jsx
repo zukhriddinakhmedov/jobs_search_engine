@@ -1,9 +1,13 @@
+import React, { useEffect, useState } from "react"
 import { connect } from "react-redux"
 import {Row, Col } from "react-bootstrap"
 import { removeFromFavouritesAction } from "../actions"
-import React from "react"
 import { MdFavorite } from "react-icons/md"
-import favouritesReducer from "../reducers/favourites"
+// import { useSelector,useDispatch } from "react-redux"
+
+const mapStateToProps = (state) => ({
+    data: state.favourites.content,
+})
 
 const mapDispatchToProps = (dispatch) => ({
     removeFromFavouritesAction: (f) => {
@@ -11,15 +15,23 @@ const mapDispatchToProps = (dispatch) => ({
     }
 })
 
-class Favourites extends React.Component {
-    render(){
+
+const Favourites= ({data, removeFromFavouritesAction})=> {
+
+useEffect(()=>{
+    console.log(data);
+})
+
 return(
     <Row>
         <Col>
-         {
-             this.props.favourites.content.map((f) => (
+         {data &&
+             data.map((f) => (
                  <li>
-                     <MdFavorite onClick={() => this.props.removeFromFavouritesAction(f)} />
+                     <MdFavorite 
+                     color="red"
+                     onClick={() =>removeFromFavouritesAction(f)} />
+                     <span>{f}</span>
                  </li>
              ))
          }
@@ -27,6 +39,5 @@ return(
     </Row>
 )
     }
-    }
 
-export default connect((state) => state, mapDispatchToProps) (Favourites)
+export default connect(mapStateToProps, mapDispatchToProps)(Favourites)

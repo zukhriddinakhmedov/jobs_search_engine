@@ -1,8 +1,15 @@
-import { initialState } from "../store/index.js";
+
 import { ADD_TO_FAVOURITES, REMOVE_FROM_FAVOURITES } from "../actions";
 
+export const initialState = {
+    favourites: {
+       content: []
+    },
+   
+}
+
 export const favouritesReducer = (state = initialState.favourites, action) => {
-    console.log(action, state)
+    // console.log(action, state)
 
     switch (action.type) {
         case ADD_TO_FAVOURITES:

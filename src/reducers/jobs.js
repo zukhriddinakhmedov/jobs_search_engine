@@ -1,6 +1,14 @@
-import { initialState } from "../store";
+// import { initialState } from "../store";
 import {GET_JOBS, GET_JOBS_ERROR, TOGGLE_LOADER} from "../actions/index.js"
 
+export const initialState = {
+ 
+    jobs: {
+        data: [],
+        isError: false,
+        isLoading: true,
+    }
+}
 
 const jobsReducer = (state = initialState.jobs, action) => {
     switch (action.type) {

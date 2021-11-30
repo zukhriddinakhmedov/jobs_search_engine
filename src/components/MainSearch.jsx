@@ -1,8 +1,8 @@
-import Button from "@restart/ui/esm/Button"
 import  {Component} from "react"
-import { Container, Form, Row, Col } from "react-bootstrap"
+import { Container, Form, Row, Col, Button } from "react-bootstrap"
 import uniqid from "uniqid"
 import Job from "./Job"
+import { Link} from 'react-router-dom';
 
 
 class MainSearch extends Component {
@@ -45,6 +45,11 @@ class MainSearch extends Component {
             this.state.jobs.map(jobData => <Job key={uniqid()} data={jobData} />)
             
         }
+        <Link to={`/favourites`}>
+        <Button>
+            favotires
+        </Button>
+        </Link>
         </Col>
          </Row>
      </Container>

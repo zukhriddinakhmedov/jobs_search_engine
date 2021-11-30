@@ -18,16 +18,16 @@ const mapDispatchToProps = (dispatch) => ({
 
  function Job({data, favourites, addToFavourites, removeFromFavourites}) {
     
-   //const ifFavourite = favourites.content.includes(data.company_name)
+   const ifFavourite = favourites.content.includes(data.company_name)
     console.log("This is favourites",  favourites)
-    // const toggleFavourite = () => {
-    // //     ifFavourite
-    // //     ? removeFromFavourites(data.company_name)
-    // //     : addToFavourites(data.company_name)
-    // // }
+    const toggleFavourite = () => {
+        ifFavourite
+        ? removeFromFavourites(data.company_name)
+        : addToFavourites(data.company_name)
+    }
      return (
         <Container>
-            {/* <Row>
+            <Row>
                 <Col style={{marginTop: "3px"}}>
                 <Card border="info" >
             <Col xs={3}><b>Company: {''}</b>
@@ -59,7 +59,7 @@ const mapDispatchToProps = (dispatch) => ({
             
             </Card>
             </Col>
-            </Row> */}
+            </Row>
             </Container>
     )
 }
