@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { connect } from "react-redux"
-import {Row, Col } from "react-bootstrap"
+import {Row, Col, Card } from "react-bootstrap"
 import { removeFromFavouritesAction } from "../actions"
 import { MdFavorite } from "react-icons/md"
 // import { useSelector,useDispatch } from "react-redux"
@@ -19,7 +19,7 @@ const mapDispatchToProps = (dispatch) => ({
 const Favourites= ({data, removeFromFavouritesAction})=> {
 
 useEffect(()=>{
-    console.log(data);
+    
 })
 
 return(
@@ -27,12 +27,16 @@ return(
         <Col>
          {data &&
              data.map((f) => (
-                 <li>
+                 <Card style={{width: '18rem'}}>
+                     <Card.Body>
+                         <Card.Title>Company: {data.company_name}</Card.Title>
                      <MdFavorite 
                      color="red"
                      onClick={() =>removeFromFavouritesAction(f)} />
                      <span>{f}</span>
-                 </li>
+                     <Card.Subtitle>{data.category}</Card.Subtitle>
+                     </Card.Body>
+                 </Card>
              ))
          }
         </Col>

@@ -45,11 +45,6 @@ class MainSearch extends Component {
             this.state.jobs.map(jobData => <Job key={uniqid()} data={jobData} />)
             
         }
-        <Link to={`/favourites`}>
-        <Button>
-            favotires
-        </Button>
-        </Link>
         </Col>
          </Row>
      </Container>
